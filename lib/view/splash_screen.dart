@@ -4,24 +4,25 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/view/main_screen.dart';
 import 'package:tec/my_colors.dart';
 
-class splashScreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  State<splashScreen> createState() => _splashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _splashScreenState extends State<splashScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => mainScreen()));
+          MaterialPageRoute(builder: (context) => const MainScreen()));
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return SafeArea(
       child: Scaffold(
         body: SafeArea(
@@ -33,11 +34,11 @@ class _splashScreenState extends State<splashScreen> {
                   image: Assets.images.logo.provider(),
                   height: 64,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 32,
                 ),
-                SpinKitFadingCube(
-                  color: solidColors.primeryColor,
+                const SpinKitFadingCube(
+                  color: SolidColors.primeryColor,
                   size: 32.0,
                 )
               ],

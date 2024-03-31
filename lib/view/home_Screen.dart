@@ -4,8 +4,8 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/my_colors.dart';
 import 'package:tec/my_strings.dart';
 
-class homeScreen extends StatelessWidget {
-  const homeScreen({
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
     super.key,
     required this.size,
     required this.textThem,
@@ -23,20 +23,20 @@ class homeScreen extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
         child: Column(
           children: [
-            homePagePoster(size: size, textThem: textThem),
-            SizedBox(
+            HomePagePoster(size: size, textThem: textThem),
+            const SizedBox(
               height: 16,
             ),
-            homePageTagList(BodyMargin: BodyMargin, textThem: textThem),
-            SizedBox(
+            HomePageTagList(BodyMargin: BodyMargin, textThem: textThem),
+            const SizedBox(
               height: 32,
             ),
-            seeMoreBlog(BodyMargin: BodyMargin, textThem: textThem),
-            homePageBlogList(
+            SeeMoreBlog(BodyMargin: BodyMargin, textThem: textThem),
+            HomePageBlogList(
                 size: size, BodyMargin: BodyMargin, textThem: textThem),
-            seeMorePodcast(BodyMargin: BodyMargin, textThem: textThem),
-            homePagePodcastList(size: size, BodyMargin: BodyMargin),
-            SizedBox(
+            SeeMorePodcast(BodyMargin: BodyMargin, textThem: textThem),
+            HomePagePodcastList(size: size, BodyMargin: BodyMargin),
+            const SizedBox(
               height: 60,
             )
           ],
@@ -46,8 +46,8 @@ class homeScreen extends StatelessWidget {
   }
 }
 
-class homePagePodcastList extends StatelessWidget {
-  const homePagePodcastList({
+class HomePagePodcastList extends StatelessWidget {
+  const HomePagePodcastList({
     super.key,
     required this.size,
     required this.BodyMargin,
@@ -102,8 +102,8 @@ class homePagePodcastList extends StatelessWidget {
   }
 }
 
-class seeMorePodcast extends StatelessWidget {
-  const seeMorePodcast({
+class SeeMorePodcast extends StatelessWidget {
+  const SeeMorePodcast({
     super.key,
     required this.BodyMargin,
     required this.textThem,
@@ -120,13 +120,13 @@ class seeMorePodcast extends StatelessWidget {
         children: [
           ImageIcon(
             Assets.icons.bluevoice.provider(),
-            color: solidColors.seeMore,
+            color: SolidColors.seeMore,
           ),
           const SizedBox(
             width: 8,
           ),
           Text(
-            myStrings.viewHotestPodCasts,
+            MyStrings.viewHotestPodCasts,
             style: textThem.headline3,
           )
         ],
@@ -135,8 +135,8 @@ class seeMorePodcast extends StatelessWidget {
   }
 }
 
-class homePageBlogList extends StatelessWidget {
-  const homePageBlogList({
+class HomePageBlogList extends StatelessWidget {
+  const HomePageBlogList({
     super.key,
     required this.size,
     required this.BodyMargin,
@@ -237,8 +237,8 @@ class homePageBlogList extends StatelessWidget {
   }
 }
 
-class seeMoreBlog extends StatelessWidget {
-  const seeMoreBlog({
+class SeeMoreBlog extends StatelessWidget {
+  const SeeMoreBlog({
     super.key,
     required this.BodyMargin,
     required this.textThem,
@@ -255,13 +255,13 @@ class seeMoreBlog extends StatelessWidget {
         children: [
           ImageIcon(
             Assets.icons.bluepen.provider(),
-            color: solidColors.seeMore,
+            color: SolidColors.seeMore,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
           Text(
-            myStrings.viewHotestBlog,
+            MyStrings.viewHotestBlog,
             style: textThem.headline3,
           )
         ],
@@ -270,8 +270,8 @@ class seeMoreBlog extends StatelessWidget {
   }
 }
 
-class homePageTagList extends StatelessWidget {
-  const homePageTagList({
+class HomePageTagList extends StatelessWidget {
+  const HomePageTagList({
     super.key,
     required this.BodyMargin,
     required this.textThem,
@@ -291,42 +291,56 @@ class homePageTagList extends StatelessWidget {
             return Padding(
               padding:
                   EdgeInsets.fromLTRB(0, 8, index == 0 ? BodyMargin : 15, 8),
-              child: Container(
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                    gradient: LinearGradient(
-                        colors: gradiantColors.tags,
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 16, 8),
-                    child: Row(
-                      children: [
-                        ImageIcon(
-                          Assets.icons.hashtagicon.provider(),
-                          color: solidColors.hashTag,
-                          size: 16,
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          tagList[index].title,
-                          style: textThem.headline2,
-                        )
-                      ],
-                    ),
-                  )),
+              child: MainTags(
+                textThem: textThem,
+                index: index,
+              ),
             );
           }),
     );
   }
 }
 
-class homePagePoster extends StatelessWidget {
-  const homePagePoster({
+class MainTags extends StatelessWidget {
+  MainTags({super.key, required this.textThem, required this.index});
+
+  final TextTheme textThem;
+  var index;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 60,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(24)),
+          gradient: LinearGradient(
+              colors: gradiantColors.tags,
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 8, 16, 8),
+          child: Row(
+            children: [
+              ImageIcon(
+                Assets.icons.hashtagicon.provider(),
+                color: SolidColors.hashTag,
+                size: 16,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                tagList[index].title,
+                style: textThem.headline2,
+              )
+            ],
+          ),
+        ));
+  }
+}
+
+class HomePagePoster extends StatelessWidget {
+  const HomePagePoster({
     super.key,
     required this.size,
     required this.textThem,
